@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
+  padding-top: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;

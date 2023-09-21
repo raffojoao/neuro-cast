@@ -1,20 +1,17 @@
 import { Feather } from '@expo/vector-icons';
 import React from 'react';
 
-import * as S from './styles';
-import logo from '../../assets/icon.png';
+import { Container, ImgLogo, Button } from './style';
+import logo from '../../assets/images/icon.png';
 
-interface HeaderProps {
-  handleToggleList: () => void;
-}
-
-const Header: React.FC<HeaderProps> = ({ handleToggleList }) => {
+const Header: React.FC = ({ handleToggleList }) => {
   return (
-    <S.Container>
-      <S.ImgLogo source={logo} />
-      <S.Button onPress={handleToggleList} />
-      <Feather name="list" size={24} color="white" />
-    </S.Container>
+    <Container>
+      <ImgLogo source={logo} />
+      <Button onPress={handleToggleList}>
+        <Feather name="list" size={24} color="white" />
+      </Button>
+    </Container>
   );
 };
 

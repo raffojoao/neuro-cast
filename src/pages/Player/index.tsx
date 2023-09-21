@@ -1,11 +1,17 @@
 import React, { createRef } from 'react';
-import { Dimensions, SafeAreaView, ScrollView, Text } from 'react-native';
+import { ScrollView, Dimensions, Text } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Header, AboutAlbum, AudioPlayer } from '../../components';
+import AboutAlbum from '../../components/AboutAlbum';
+import AudioPlayer from '../../components/AudioPlayer';
+import Header from '../../components/Header';
+import ListAudio from '../../components/ListAudio';
+import { useAudio } from '../../hooks/audio';
 
 const Player: React.FC = () => {
-  const actionSheetRef = createRef<{ setModalVisible: () => void }>();
+  const actionSheetRef = createRef();
+  const { audio } = useAudio();
 
   const handleToggleList = () => {
     actionSheetRef.current?.setModalVisible();
@@ -15,6 +21,7 @@ const Player: React.FC = () => {
     <SafeAreaView>
       <Header handleToggleList={handleToggleList} />
       <ScrollView>
+        <Text>{audio}</Text>
         <AboutAlbum />
         <AudioPlayer />
       </ScrollView>
@@ -22,10 +29,9 @@ const Player: React.FC = () => {
         ref={actionSheetRef}
         containerStyle={{
           height: Dimensions.get('screen').height - 150,
-          padding: 20,
         }}
       >
-        <Text>Oi</Text>
+        <ListAudio />
       </ActionSheet>
     </SafeAreaView>
   );

@@ -1,23 +1,26 @@
-import { Feather } from '@expo/vector-icons';
-import React from 'react';
+import React from "react";
+import { Feather } from "@expo/vector-icons";
 
-import * as S from './styles';
+import { Container, ButtonContainer, ButtonAction } from "./style";
+import { useAudio } from "../../hooks/audio";
 
 const AudioPlayer: React.FC = () => {
+  const { isPlay, handleToggleAudio } = useAudio();
+
   return (
-    <S.Container>
-      <S.ButtonContainer>
-        <S.ButtonAction>
+    <Container>
+      <ButtonContainer>
+        <ButtonAction>
           <Feather name="chevron-left" size={24} color="white" />
-        </S.ButtonAction>
-        <S.ButtonAction primary>
-          <Feather name="play" size={32} color="white" />
-        </S.ButtonAction>
-        <S.ButtonAction>
+        </ButtonAction>
+        <ButtonAction primary onPress={handleToggleAudio}>
+          <Feather name={isPlay ? "pause" : "play"} size={32} color="white" />
+        </ButtonAction>
+        <ButtonAction>
           <Feather name="chevron-right" size={24} color="white" />
-        </S.ButtonAction>
-      </S.ButtonContainer>
-    </S.Container>
+        </ButtonAction>
+      </ButtonContainer>
+    </Container>
   );
 };
 

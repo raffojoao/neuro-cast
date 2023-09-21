@@ -1,18 +1,23 @@
-import React from 'react';
-import { View } from 'react-native';
+import React from "react";
+import { View } from "react-native";
+import { useAudio } from "../../hooks/audio";
 
-import * as S from './styles';
+import { Container, Album, Title } from "./style";
 
 const AboutAlbum: React.FC = () => {
+  const { currentAudioInfo } = useAudio();
+
   return (
-    <S.Container>
-      <S.Title>Selecione um áudio</S.Title>
-      <S.Album
+    <Container>
+      <Title>{currentAudioInfo?.title || "Selecione um audio"}</Title>
+      <Album
         source={{
-          uri: 'https://toppng.com/uploads/preview/music-icon-white-icon-for-music-11553466203knzrpq9ihd.png',
+          uri:
+            currentAudioInfo?.imageSource ||
+            "https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg",
         }}
       />
-    </S.Container>
+    </Container>
   );
 };
 

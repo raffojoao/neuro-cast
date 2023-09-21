@@ -1,17 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React from "react";
+import { StatusBar } from "expo-status-bar";
 
-import Player from './pages/Player';
-import * as S from './styles';
+import { AudioProvider } from "./hooks/audio";
+
+import Player from "./pages/Player";
+
+import { Background } from "./style";
 
 const Main: React.FC = () => {
   return (
-    <>
+    <AudioProvider>
       <StatusBar style="light" />
-      <S.Background>
+      <Background>
         <Player />
-      </S.Background>
-    </>
+      </Background>
+    </AudioProvider>
   );
 };
 
